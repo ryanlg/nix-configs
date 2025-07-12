@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
     # ./disk-config.nix
-    ../../_modules
+    ../../modules
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -46,7 +46,6 @@
       fsType = "virtiofs";
     };
   };
-
 
   services.openssh.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];

@@ -5,13 +5,13 @@
     ./time.nix
   ];
 
-  i18n.defaultLocale = "en_US.UTF-8";
-
   config = {
     security = {
       # Don't ask for password when "sudo"
       sudo.wheelNeedsPassword = false;
     };
+
+    i18n.defaultLocale = "en_US.UTF-8";
 
     # do not change unless you know what you are doing
 
@@ -32,6 +32,6 @@
     # and migrated your data accordingly.
     #
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-    system.stateVersion = "24.05"; # Did you read the comment?
+    system.stateVersion = "25.05"; # Did you read the comment?
   };
 }
