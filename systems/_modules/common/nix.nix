@@ -19,12 +19,12 @@
         "flakes"
       ];
 
+      # Automatically detect files in the store that have identical contents
       auto-optimise-store = true;
+      # Garbage collector will keep the outputs of non-garbage derivations
       keep-outputs = true;
+      # Prevent garbage collector from keeping the derivations from which non-garbage store paths were built.
       keep-derivations = false;
-
-      # this make sure we always check for new commit when fetching source
-      tarball-ttl = 0;
     };
   };
 }

@@ -1,10 +1,13 @@
 { ... }:
 {
-  imports = [ ./nix.nix ];
+  imports = [
+    ./nix.nix
+    ./time.nix
+  ];
+
+  i18n.defaultLocale = "en_US.UTF-8";
 
   config = {
-    time.timeZone = "Australia/Melbourne";
-
     security = {
       # Don't ask for password when "sudo"
       sudo.wheelNeedsPassword = false;
