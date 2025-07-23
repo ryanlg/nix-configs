@@ -36,17 +36,61 @@
     htop
     tree
     wget
+    mesa
   ];
 
   # Mount the Nix configs shared by the host.
-  # This assumes macOS host and Apple Virtualization.
   fileSystems = {
+    # Apple Virtualization.
     "/mnt/nixos" = {
       device = "share";
       fsType = "virtiofs";
     };
+    # QEMU
+    # "/mnt/nixos" = {
+    #   device = "share";
+    #   fsType = "9p";
+    #   options = [
+    #     "trans=virtio"
+    #     "version=9p2000.L"
+    #     "rw"
+    #     "_netdev"
+    #     "nofail"
+    #     "auto"
+    #   ];
+    # };
+    # "/etc/nixos" = {
+    #   device  = "/mnt/nixos";      # bindfs is just a FUSE view of the first mount
+    #   fsType  = "fuse.bindfs";
+    #   depends = [ "/mnt/nixos" ];
+    #   options = [
+    #     "map=501/1000:@20/@1000"
+    #     "nofail"
+    #     "auto"
+    #   ];
+    # };
   };
 
   services.openssh.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
+
+  # ----------------------
+  # Required to enable *any* window server, not just XServer
+  # hardware.graphics.enable = true;
+  services.xserver.enable = true;
+  programs.sway = {
+    enable = true;
+    # xwayland.enable = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --user-menu --cmd sway";
+      user = "ryan";
+    };
+  };
+
+  # services.spice-vdagentd.enable = true;
+  # services.qemuGuest.enable = true;
 }
