@@ -37,50 +37,51 @@
     tree
     wget
     mesa
+    bindfs
   ];
 
   # Mount the Nix configs shared by the host.
   fileSystems = {
     # Apple Virtualization.
-    "/mnt/nixos" = {
-      device = "share";
-      fsType = "virtiofs";
-    };
-    # QEMU
     # "/mnt/nixos" = {
     #   device = "share";
-    #   fsType = "9p";
-    #   options = [
-    #     "trans=virtio"
-    #     "version=9p2000.L"
-    #     "rw"
-    #     "_netdev"
-    #     "nofail"
-    #     "auto"
-    #   ];
+    #   fsType = "virtiofs";
     # };
-    # "/etc/nixos" = {
-    #   device  = "/mnt/nixos";      # bindfs is just a FUSE view of the first mount
-    #   fsType  = "fuse.bindfs";
-    #   depends = [ "/mnt/nixos" ];
-    #   options = [
-    #     "map=501/1000:@20/@1000"
-    #     "nofail"
-    #     "auto"
-    #   ];
-    # };
+    # QEMU
+    "/mnt/nixos" = {
+      device = "share";
+      fsType = "9p";
+      options = [
+        "trans=virtio"
+        "version=9p2000.L"
+        "debug=0xffff"
+        "rw"
+        "_netdev"
+        "nofail"
+        "auto"
+      ];
+    };
+    "/etc/nixos" = {
+      device  = "/mnt/nixos";    # bindfs is just a FUSE view of the first mount
+      fsType  = "fuse.bindfs";
+      depends = [ "/mnt/nixos" ];
+      options = [
+        "map=501/1000:@20/@100"  # 501/20 is your user account on the host
+        "nofail"
+        "auto"
+      ];
+    };
   };
 
   services.openssh.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
   # ----------------------
-  # Required to enable *any* window server, not just XServer
   # hardware.graphics.enable = true;
+  # Required to enable *any* window server, not just XServer
   services.xserver.enable = true;
   programs.sway = {
     enable = true;
-    # xwayland.enable = true;
   };
 
   services.greetd = {
@@ -91,6 +92,6 @@
     };
   };
 
-  # services.spice-vdagentd.enable = true;
-  # services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
+  services.qemuGuest.enable = true;
 }

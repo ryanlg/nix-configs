@@ -4,25 +4,22 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
+  imports =
+    [ (modulesPath + "/profiles/qemu-guest.nix")
+    ];
 
-  boot.initrd.availableKernelModules = [ "virtio_pci" "xhci_pci" "usbhid" "usb_storage" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "virtio_pci" "usbhid" "usb_storage" "sr_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/nixos" =
-    { device = "share";
-      fsType = "virtiofs";
-    };
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b0c6a7fe-e86f-4c64-965b-7ac52993ed61";
+    { device = "/dev/disk/by-uuid/944a3fe5-88a7-4e50-be8d-d934fb3422c1";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/47CE-433B";
+    { device = "/dev/disk/by-uuid/F408-EA35";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
