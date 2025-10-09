@@ -9,10 +9,10 @@
 
     # home-manager: manage user homes
     # https://github.com/nix-community/home-manager
-    # home-manager = {
-    #   url = "github:nix-community/home-manager/release-24.05";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # disko: declarative disk partitioning and formatting
     # https://github.com/nix-community/disko
@@ -61,6 +61,7 @@
             inherit inputs outputs;
           };
           modules = [
+            inputs.home-manager.nixosModules.home-manager
             ./systems/hosts/cobblestone/configuration.nix
           ];
         };
@@ -68,16 +69,14 @@
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
-      # homeConfigurations = {
-      #   # FIXME replace with your username@hostname
-      #   "ryan@nixdev" = home-manager.lib.homeManagerConfiguration {
-      #     pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-      #     extraSpecialArgs = {inherit inputs outputs;};
-      #     modules = [
-      #       # > Our main home-manager configuration file <
-      #       ./home-manager/home.nix
-      #     ];
-      #   };
-      # };
+      homeConfigurations = {
+        "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          extraSpecialArgs = {inherit inputs outputs;};
+          modules = [
+            ./systems/hosts/cobblestone/home.nix
+          ];
+        };
+      };
     };
 }
