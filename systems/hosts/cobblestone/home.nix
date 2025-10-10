@@ -8,10 +8,10 @@
   imports = [
   ];
 
-  # home = {
-  #   username = "your-username";
-  #   homeDirectory = "/home/your-username";
-  # };
+  home = {
+    username = "ryan";
+    homeDirectory = "/home/ryan";
+  };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
