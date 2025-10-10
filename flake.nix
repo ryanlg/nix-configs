@@ -14,6 +14,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nixvim - Neovim distribution built around Nix modules
+    # https://github.com/nix-community/nixvim
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # disko: declarative disk partitioning and formatting
     # https://github.com/nix-community/disko
     # disko = {
@@ -61,7 +68,6 @@
             inherit inputs outputs;
           };
           modules = [
-            inputs.home-manager.nixosModules.home-manager
             ./systems/hosts/cobblestone/configuration.nix
           ];
         };

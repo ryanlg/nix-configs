@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    ../../home-manager/modules/neovim
   ];
 
   home = {
