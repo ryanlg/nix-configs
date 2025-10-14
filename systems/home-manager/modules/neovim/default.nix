@@ -1,10 +1,10 @@
-{ ... }:
+{ inputs, ... }:
 {
-  imports = [
-  ];
   config = {
-    programs.nixvim = {
-        enable = true;
+    nixvim = inputs.nixvim.legacyPackages.aarch64-linux.makeNixvimWithModule {
+        module.imports = [ 
+          ./plugins.nix
+        ];
     };
   };
 }
