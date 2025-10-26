@@ -18,12 +18,7 @@
     neo-tree.enable = true;
     telescope = {
       enable = true;
-      keymaps = {
-        "<leader>ff" = "find_files";
-        "<leader>fg" = "live_grep";
-        "<leader>fb" = "buffers";
-      };
-    };
+    } // import ./configs/telescope.nix;
 
     # Syntax & Highlights
     nix.enable = true;
