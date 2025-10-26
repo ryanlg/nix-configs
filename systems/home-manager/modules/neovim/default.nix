@@ -1,10 +1,11 @@
-{ inputs, ... }:
+{ pkgs, ... }:
 {
-  config = {
-    nixvim = inputs.nixvim.legacyPackages.aarch64-linux.makeNixvimWithModule {
-        module.imports = [ 
-          ./plugins.nix
-        ];
-    };
+  programs.nixvim = {
+    enable = true;
+
+    imports = [
+      ./plugins.nix
+      ./keymaps.nix
+    ];
   };
 }
