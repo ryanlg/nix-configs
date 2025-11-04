@@ -18,7 +18,12 @@
     neo-tree.enable = true;
     telescope = {
       enable = true;
-    } // import ./configs/telescope.nix;
+
+      extensions = {
+        fzf-native.enable = true;
+        undo.enable = true;
+      };
+    };
 
     # Syntax & Highlights
     nix.enable = true;
