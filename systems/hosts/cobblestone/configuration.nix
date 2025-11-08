@@ -76,13 +76,13 @@
   services.openssh.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
+  security.polkit.enable = true;
+
   # ----------------------
-  # hardware.graphics.enable = true;
   # Required to enable *any* window server, not just XServer
   services.xserver.enable = true;
-  programs.sway = {
-    enable = true;
-  };
+  # Config will be provided by home manager
+  # programs.sway.enable = true;
 
   services.greetd = {
     enable = true;

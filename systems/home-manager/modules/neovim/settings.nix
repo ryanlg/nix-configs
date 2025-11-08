@@ -62,4 +62,9 @@
     # Set to dark
     background = "dark";
   };
+
+  globals = {
+    zenwritten_compat = 1;
+  };
+  colorscheme = "zenwritten";
 }

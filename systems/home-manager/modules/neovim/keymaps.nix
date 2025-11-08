@@ -3,9 +3,7 @@
 globals.mapleader = ";";
 
   keymaps = [
-    # =======
     # Editing
-    # =======
     {
       # Yank selection to system clipboard
       mode = "v";
@@ -132,6 +130,12 @@ globals.mapleader = ";";
       key = "<leader>-";
       action = "<Cmd>vertical resize -5<CR>";
     }
+    {
+      # Toggle zen-mode
+      mode = "n";
+      key = "<leader>vg";
+      action = "<Cmd>ZenMode<CR>";
+    }
 
     # neo-tree
     {
@@ -153,5 +157,11 @@ globals.mapleader = ";";
       action = "<cmd>Telescope buffers<CR>";
     }
 
+    # Trouble
+    {
+      mode = "n";
+      key = "<leader>xx";
+      action = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
+    }
   ];
 }

@@ -2,6 +2,7 @@
 {
   programs.nixvim = {
     enable = true;
+    vimAlias = true;
 
     imports = [
       ./plugins.nix

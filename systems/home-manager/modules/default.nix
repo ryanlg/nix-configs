@@ -3,5 +3,6 @@
     imports = [
       inputs.nixvim.homeManagerModules.nixvim
       ./neovim
+      ./fonts
     ];
 }
