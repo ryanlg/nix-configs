@@ -31,6 +31,12 @@
     # NUR: Nix User Repository
     # https://github.com/nix-community/NUR
     # nur.url = "github:nix-community/NUR";
+
+    # fzf integration with ZSH
+    fzf-zsh = {
+      url = "github:unixorn/fzf-zsh-plugin";
+      flake = false;
+    };
   };
 
   outputs =
