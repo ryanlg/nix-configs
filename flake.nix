@@ -6,6 +6,7 @@
     # nixpkgs: stable and unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = github:nix-darwin/nix-darwin/nix-darwin-25.05;
 
     # home-manager: manage user homes
     # https://github.com/nix-community/home-manager
@@ -45,29 +46,19 @@
       nixpkgs,
       home-manager,
       disko,
+      nix-darwin,
       ...
     }@inputs:
     let
       inherit (self) outputs;
-      # Supported systems for your flake packages, shell, etc.
-      systems = [
-        "aarch64-linux"
-      ];
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+
+      linuxSystems = [ "aarch64-linux" ];
+      darwinSystems = [ "aarch64-darwin" ];
+      forAllSystems = nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems);
     in
     {
-      # Your custom packages
-      # Accessible through 'nix build', 'nix shell', etc
-      # packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         cobblestone = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -79,8 +70,16 @@
         };
       };
 
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
+      darwinConfigurations = {
+        rybook = nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          system = "aarch64-darwin";
+          modules = [ ./systems/hosts/rybook/configuration.nix ];
+        };
+      };
+
       homeConfigurations = {
         "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
