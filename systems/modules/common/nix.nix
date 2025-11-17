@@ -19,9 +19,10 @@
         "flakes"
       ];
 
-      # Automatically detect files in the store that have identical contents
-      # `nix.settings.auto-optimise-store` is known to corrupt the Nix Store, please use `nix.optimise.automatic` instead.
-      # auto-optimise-store = true;
+      # Automatically detect files in the store that have identical contents on a timer
+      # `nix.settings.auto-optimise-store` is known to corrupt the Nix Store, please
+      # use `nix.optimise.automatic` instead.
+      nix.optimise.automatic = true;
 
       # Garbage collector will keep the outputs of non-garbage derivations
       keep-outputs = true;

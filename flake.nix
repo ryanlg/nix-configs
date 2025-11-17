@@ -8,6 +8,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = github:nix-darwin/nix-darwin/nix-darwin-25.05;
 
+    # flake-parts - very lightweight flake framework
+    # https://flake.parts
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     # home-manager: manage user homes
     # https://github.com/nix-community/home-manager
     home-manager = {
@@ -54,54 +58,62 @@
 
       linuxSystems = [ "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" ];
-      forAllSystems = nixpkgs.lib.genAttrs (linuxSystems ++ darwinSystems);
+      systems = linuxSystems ++ darwinSystems;
     in
-    {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      inherit systems;
 
-      nixosConfigurations = {
-        cobblestone = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
+      perSystem =
+        { pkgs, ... }:
+        {
+          formatter = pkgs.nixfmt-rfc-style;
+        };
+
+      flake = {
+        nixosConfigurations = {
+          cobblestone = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [
+              ./systems/hosts/cobblestone/configuration.nix
+            ];
           };
-          modules = [
-            ./systems/hosts/cobblestone/configuration.nix
-          ];
         };
-      };
 
-      darwinConfigurations = {
-        rybook = nix-darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit inputs outputs;
+        darwinConfigurations = {
+          rybook = nix-darwin.lib.darwinSystem {
+            specialArgs = {
+              inherit inputs outputs;
+            };
+            system = "aarch64-darwin";
+            modules = [
+              ./systems/hosts/rybook/configuration.nix
+              home-manager.darwinModules.home-manager
+              #   home-manager.useGlobalPkgs = true;
+              #   home-manager.useUserPackages = true;
+              #   # home-manager.extraSpecialArgs = specialArgs;
+              #   home-manager.users.ryan {import ./systems/hosts/rybook/home.nix;
+              # }
+            ];
           };
-          system = "aarch64-darwin";
-          modules = [
-            ./systems/hosts/rybook/configuration.nix
-            home-manager.darwinModules.home-manager
-            #   home-manager.useGlobalPkgs = true;
-            #   home-manager.useUserPackages = true;
-            #   # home-manager.extraSpecialArgs = specialArgs;
-            #   home-manager.users.ryan {import ./systems/hosts/rybook/home.nix;
-            # }
-          ];
         };
-      };
 
-      homeConfigurations = {
-        "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-linux;
-          extraSpecialArgs = {inherit inputs outputs;};
-          modules = [
-            ./systems/hosts/cobblestone/home.nix
-          ];
-        };
-        "ryan@rybook" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          extraSpecialArgs = {inherit inputs outputs;};
-          modules = [
-            ./systems/hosts/rybook/home.nix
-          ];
+        homeConfigurations = {
+          "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.aarch64-linux;
+            extraSpecialArgs = {inherit inputs outputs;};
+            modules = [
+              ./systems/hosts/cobblestone/home.nix
+            ];
+          };
+          "ryan@rybook" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            extraSpecialArgs = {inherit inputs outputs;};
+            modules = [
+              ./systems/hosts/rybook/home.nix
+            ];
+          };
         };
       };
     };
