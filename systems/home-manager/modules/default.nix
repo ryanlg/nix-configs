@@ -3,7 +3,7 @@
     imports = [
       inputs.nixvim.homeManagerModules.nixvim
       ./neovim
-      ./fonts.nix
+      # ./fonts.nix
       ./zsh.nix
     ];
 }

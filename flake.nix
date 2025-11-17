@@ -76,7 +76,15 @@
             inherit inputs outputs;
           };
           system = "aarch64-darwin";
-          modules = [ ./systems/hosts/rybook/configuration.nix ];
+          modules = [
+            ./systems/hosts/rybook/configuration.nix
+            home-manager.darwinModules.home-manager
+            #   home-manager.useGlobalPkgs = true;
+            #   home-manager.useUserPackages = true;
+            #   # home-manager.extraSpecialArgs = specialArgs;
+            #   home-manager.users.ryan {import ./systems/hosts/rybook/home.nix;
+            # }
+          ];
         };
       };
 
@@ -86,6 +94,13 @@
           extraSpecialArgs = {inherit inputs outputs;};
           modules = [
             ./systems/hosts/cobblestone/home.nix
+          ];
+        };
+        "ryan@rybook" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          extraSpecialArgs = {inherit inputs outputs;};
+          modules = [
+            ./systems/hosts/rybook/home.nix
           ];
         };
       };

@@ -22,6 +22,7 @@
       # Automatically detect files in the store that have identical contents
       # `nix.settings.auto-optimise-store` is known to corrupt the Nix Store, please use `nix.optimise.automatic` instead.
       # auto-optimise-store = true;
+
       # Garbage collector will keep the outputs of non-garbage derivations
       keep-outputs = true;
       # Prevent garbage collector from keeping the derivations from which non-garbage store paths were built.
