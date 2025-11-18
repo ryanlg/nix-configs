@@ -9,6 +9,11 @@
     };
     channel.enable = false; # remove nix-channel related tools & configs, we use flakes instead
 
+    # Automatically detect files in the store that have identical contents on a timer
+    # `nix.settings.auto-optimise-store` is known to corrupt the Nix Store, please
+    # use `nix.optimise.automatic` instead.
+    optimise.automatic = true;
+
     settings = {
       # NIX_PATH is still used by many useful tools, so we set it to the same value as the one used by this flake
       # make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake
@@ -18,11 +23,6 @@
         "nix-command"
         "flakes"
       ];
-
-      # Automatically detect files in the store that have identical contents on a timer
-      # `nix.settings.auto-optimise-store` is known to corrupt the Nix Store, please
-      # use `nix.optimise.automatic` instead.
-      nix.optimise.automatic = true;
 
       # Garbage collector will keep the outputs of non-garbage derivations
       keep-outputs = true;

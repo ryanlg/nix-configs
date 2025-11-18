@@ -54,8 +54,6 @@
       ...
     }@inputs:
     let
-      inherit (self) outputs;
-
       linuxSystems = [ "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" ];
       systems = linuxSystems ++ darwinSystems;
@@ -73,10 +71,10 @@
         nixosConfigurations = {
           cobblestone = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs outputs;
+              inherit inputs;
             };
             modules = [
-              ./systems/hosts/cobblestone/configuration.nix
+              ./hosts/cobblestone/configuration.nix
             ];
           };
         };
@@ -84,11 +82,11 @@
         darwinConfigurations = {
           rybook = nix-darwin.lib.darwinSystem {
             specialArgs = {
-              inherit inputs outputs;
+              inherit inputs;
             };
             system = "aarch64-darwin";
             modules = [
-              ./systems/hosts/rybook/configuration.nix
+              ./hosts/rybook/configuration.nix
               home-manager.darwinModules.home-manager
               #   home-manager.useGlobalPkgs = true;
               #   home-manager.useUserPackages = true;
@@ -102,16 +100,16 @@
         homeConfigurations = {
           "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.aarch64-linux;
-            extraSpecialArgs = {inherit inputs outputs;};
+            extraSpecialArgs = {inherit inputs;};
             modules = [
-              ./systems/hosts/cobblestone/home.nix
+              ./hosts/cobblestone/home.nix
             ];
           };
           "ryan@rybook" = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            extraSpecialArgs = {inherit inputs outputs;};
+            extraSpecialArgs = {inherit inputs;};
             modules = [
-              ./systems/hosts/rybook/home.nix
+              ./hosts/rybook/home.nix
             ];
           };
         };
