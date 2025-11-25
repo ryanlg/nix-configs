@@ -51,6 +51,9 @@ in
       };
 
       plugins = [
+        # @todo: this plugin automatically clones the fzf repo into $USER
+        # if it doesn't see fzf in $PATH. This is... violating.
+        # Solution is either to patch that funciton out or use another plugin.
         {
           name = "fzf-zsh";
           src  = inputs.fzf-zsh;

@@ -1,9 +1,7 @@
 { ... }:
 {
   imports = [
-    # Shared
-    ./nix.nix
-    ./time.nix
+    ./shared
   ];
 
   config = {

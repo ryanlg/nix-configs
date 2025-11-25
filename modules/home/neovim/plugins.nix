@@ -44,6 +44,10 @@
     };
 
     # Editor Utilities
+    # @todo: some improvements for neo-tree
+    # https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
+    # - Custom Window Chooser
+    # - Hide Cursor in Neo-tree Window
     neo-tree.enable = true;
     telescope = {
       enable = true;
