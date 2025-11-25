@@ -1,13 +1,20 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.myHome.editors.nvim;
+in
 {
-  programs.nixvim = {
-    enable = true;
-    vimAlias = true;
+  options.myHome.editors.nvim.enable = lib.mkEnableOption "Enable Neovim";
 
-    imports = [
-      ./plugins.nix
-      ./keymaps.nix
-      ./settings.nix
-    ];
+  config = lib.mkIf cfg.enable {
+    programs.nixvim = {
+      enable = true;
+      vimAlias = true;
+
+      imports = [
+        ./plugins.nix
+        ./keymaps.nix
+        ./settings.nix
+      ];
+    };
   };
 }

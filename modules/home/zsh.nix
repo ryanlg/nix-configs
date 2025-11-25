@@ -1,5 +1,16 @@
-{ inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
+let
+  cfg = config.myHome.shell.zsh;
+in
 {
+  options.myHome.shell.zsh.enable = lib.mkEnableOption "Enable Zsh";
+  options.myHome.shell.zsh.setDefault = lib.mkOption {
+    default = true;
+    example = true;
+    description = "Make Zsh the default shell for the default user.";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.shell.enableZshIntegration = true;
 
     programs.zsh = {
@@ -51,6 +62,10 @@
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
-      settings.battery.disabled = true;
+      settings = {
+        cmd_duration.disabled = true;
+        battery.disabled = true;
+      };
     };
+  };
 }
