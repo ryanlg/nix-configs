@@ -13,7 +13,6 @@
     fonts.meslo.enable = true;
     shell.zsh.enable = true;
     editors.nvim.enable = true;
-    programs.misc.enable = true;
   };
 
   home = {
