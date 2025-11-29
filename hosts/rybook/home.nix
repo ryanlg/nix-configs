@@ -15,6 +15,10 @@
     editors.nvim.enable = true;
   };
 
+  mySystem = {
+    sys.keymaps.enable = true;
+  };
+
   home = {
      username = "ryan";
      homeDirectory = "/Users/ryan";

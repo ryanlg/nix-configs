@@ -2,6 +2,6 @@
 {
   imports = [
     ./nix.nix
-    ./time.nix
+    ./timezone.nix
   ];
 }

@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./os
-    ./home
+    ./sys
   ];
 }

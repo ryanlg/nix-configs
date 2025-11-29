@@ -48,6 +48,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       disko,
       nix-darwin,
@@ -81,10 +82,13 @@
 
         darwinConfigurations = {
           rybook = nix-darwin.lib.darwinSystem {
+            system = "aarch64-darwin";
             specialArgs = {
               inherit inputs;
+              pkgs-unstable = import nixpkgs-unstable {
+                system = "aarch64-darwin";
+              };
             };
-            system = "aarch64-darwin";
             modules = [
               ./hosts/rybook/configuration.nix
               home-manager.darwinModules.home-manager

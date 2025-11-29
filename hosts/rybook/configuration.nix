@@ -7,7 +7,9 @@
 
 {
   imports = [
-    ../../modules/os
+    ../../modules/os/shared
+    ../../modules/os/universal
+    ../../modules/os/darwin
   ];
 
   # Add ability to used TouchID for sudo authentication
@@ -15,9 +17,11 @@
 
   mySystem = {
     timezone = "Australia/Melbourne";
+    sys.keymaps.enable = true;
   };
 
   system = {
     stateVersion = 6;
+    primaryUser = "ryan";
   };
 }
