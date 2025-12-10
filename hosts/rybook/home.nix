@@ -2,7 +2,7 @@
   inputs,
   lib,
   config,
-  pkgs,
+  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -13,10 +13,6 @@
     fonts.meslo.enable = true;
     shell.zsh.enable = true;
     editors.nvim.enable = true;
-  };
-
-  mySystem = {
-    sys.keymaps.enable = true;
   };
 
   home = {

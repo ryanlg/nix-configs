@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.mySystem.sys.keymaps;
 in
@@ -6,20 +6,11 @@ in
   options.mySystem.sys.keymaps = {
     enable = lib.mkEnableOption "Manage keymaps";
 
-    rightAltAsCtrl = lib.mkOption {
-      description = "Use right Alt key as right Ctrl";
-      default = true;
+    karabiner-dk.package = lib.mkPackageOption pkgs "karabiner-dk" {
+      extraDescription = "This option is only used by Darwin systems.";
     };
 
-    escAsFn = lib.mkOption {
-      description = "Use Escape as layer switch";
-      default = true;
-    };
-
-    capsAsEsc = lib.mkOption {
-      description = "Use Casp Lock as Escape";
-      default = true;
-    };
+    kanata.package = lib.mkPackageOption pkgs "kanata" {};
   };
 
   config = lib.mkIf cfg.enable {
@@ -30,6 +21,10 @@ in
     # There is a `services.hardware.kanata` in nixpkgs to bootstrap Kanata, but
     # that's Linux only. For macOS, we'll have to do it ourselves.
 
-    # The implementation is split.
+    environment.systemPackages = [
+      cfg.karabiner-dk.package
+    ];
+
+    # The rest of the implementation is split.
   };
 }

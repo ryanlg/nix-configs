@@ -111,7 +111,12 @@
           };
           "ryan@rybook" = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            extraSpecialArgs = {inherit inputs;};
+            extraSpecialArgs = {
+              inherit inputs;
+              pkgs-unstable = import nixpkgs-unstable {
+                system = "aarch64-darwin";
+              };
+            };
             modules = [
               ./hosts/rybook/home.nix
             ];
