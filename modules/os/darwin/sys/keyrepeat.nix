@@ -3,12 +3,14 @@ let
   cfg = config.mySystem.sys.keyrepeat;
 in
 {
-  system = {
-    defaults = lib.mkIf cfg.enable {
-      NSGlobalDomain = {
-        KeyRepeat = 2;
-        InitialKeyRepeat = 12;
-        ApplePressAndHoldEnabled = false;
+  config = lib.mkIf cfg.enable {
+    system = {
+      defaults = {
+        NSGlobalDomain = {
+          KeyRepeat = 2;
+          InitialKeyRepeat = 12;
+          ApplePressAndHoldEnabled = false;
+        };
       };
     };
   };

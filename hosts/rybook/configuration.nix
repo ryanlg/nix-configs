@@ -24,6 +24,7 @@
         karabiner-dk.package = pkgs-unstable.karabiner-dk;
       };
       keyrepeat.enable = true;
+      trackpad.enable = true;
     };
   };
 
