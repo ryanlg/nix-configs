@@ -9,6 +9,7 @@ in
     programs.nixvim = {
       enable = true;
       vimAlias = true;
+      defaultEditor = true;
 
       imports = [
         ./plugins.nix

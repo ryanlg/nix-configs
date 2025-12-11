@@ -17,10 +17,13 @@
 
   mySystem = {
     timezone = "Australia/Melbourne";
-    sys.keymaps = {
-      enable = true;
-      kanata.package = pkgs-unstable.kanata;
-      karabiner-dk.package = pkgs-unstable.karabiner-dk;
+    sys = {
+      keymaps = {
+        enable = true;
+        kanata.package = pkgs-unstable.kanata;
+        karabiner-dk.package = pkgs-unstable.karabiner-dk;
+      };
+      keyrepeat.enable = true;
     };
   };
 

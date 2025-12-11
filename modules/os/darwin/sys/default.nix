@@ -2,5 +2,6 @@
 {
   imports = [
     ./keymaps
+    ./keyrepeat.nix
   ];
 }
