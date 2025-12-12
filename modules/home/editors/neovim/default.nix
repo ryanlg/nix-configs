@@ -15,6 +15,7 @@ in
         ./plugins.nix
         ./keymaps.nix
         ./settings.nix
+        ./saving.nix
       ];
     };
   };
