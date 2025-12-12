@@ -7,5 +7,6 @@
       ./shells
       ./editors
       ./fonts
+      ./terminals
     ];
 }
