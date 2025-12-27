@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  outputs,
   ...
 }:
 
@@ -11,6 +12,8 @@
     # ./disk-config.nix
     ../../modules
   ];
+
+  nixpkgs.overlays = outputs.overlays;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

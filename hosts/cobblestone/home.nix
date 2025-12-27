@@ -3,11 +3,14 @@
   lib,
   config,
   pkgs,
+  outputs,
   ...
 }: {
   imports = [
     ../../home-manager/modules
   ];
+
+  nixpkgs.overlays = outputs.overlays;
 
   home = {
     username = "ryan";

@@ -3,7 +3,6 @@
   description = "My Nix IaC";
 
   inputs = {
-    # nixpkgs: stable and unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = github:nix-darwin/nix-darwin/nix-darwin-25.05;
@@ -23,6 +22,13 @@
     # https://github.com/nix-community/nixvim
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # zjstatus - Status bar for Zellij
+    # https://github.com/dj95/zjstatus
+    zjstatus = {
+      url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -52,6 +58,7 @@
       home-manager,
       disko,
       nix-darwin,
+      zjstatus,
       ...
     }@inputs:
     let
@@ -123,5 +130,11 @@
           };
         };
       };
+
+      overlays = with inputs; [
+        (final: prev: {
+          zjstatus = zjstatus.packages.${prev.system}.default;
+        })
+      ];
     };
 }
