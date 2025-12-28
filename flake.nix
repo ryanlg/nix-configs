@@ -65,13 +65,23 @@
       linuxSystems = [ "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" ];
       systems = linuxSystems ++ darwinSystems;
+
+      overlays = [
+        (final: prev: {
+          zjstatus = zjstatus.packages.${prev.system}.default;
+        })
+      ];
     in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } ({ withSystem, ...} :
+    {
       inherit systems;
 
       perSystem =
-        { pkgs, ... }:
+        { pkgs, system, ... }:
         {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system overlays;
+          };
           formatter = pkgs.nixfmt-rfc-style;
         };
 
@@ -116,25 +126,21 @@
               ./hosts/cobblestone/home.nix
             ];
           };
-          "ryan@rybook" = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-            extraSpecialArgs = {
-              inherit inputs;
-              pkgs-unstable = import nixpkgs-unstable {
-                system = "aarch64-darwin";
+          "ryan@rybook" = withSystem "aarch64-darwin" ({pkgs, system, ...}:
+            home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs;
+                pkgs-unstable = import nixpkgs-unstable {
+                  system = "aarch64-darwin";
+                };
               };
-            };
-            modules = [
-              ./hosts/rybook/home.nix
-            ];
-          };
+              modules = [
+                ./hosts/rybook/home.nix
+              ];
+            }
+          );
         };
       };
-
-      overlays = with inputs; [
-        (final: prev: {
-          zjstatus = zjstatus.packages.${prev.system}.default;
-        })
-      ];
-    };
+    });
 }
