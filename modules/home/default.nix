@@ -8,5 +8,6 @@
       ./fonts
       ./terminals
       ./multiplexers
+      ./utilities
     ];
 }

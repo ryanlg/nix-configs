@@ -14,6 +14,9 @@
     shell.zsh.enable = true;
     editors.nvim.enable = true;
     terminals.alacritty.enable = true;
+    utilities = {
+      tig.enable = true;
+    };
   };
 
   home = {
