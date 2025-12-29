@@ -60,6 +60,20 @@ in
           file = "fzf-zsh-plugin.plugin.zsh";
         }
       ];
+
+      shellAliases = {
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
+        "....." = "cd ../../../..";
+        "......" = "cd ../../../../..";
+        "......." = "cd ../../../../../..";
+
+        # "git branch switch"
+        # This overshadows Prezto's git alias for `git show-branch` that "lists branches and their
+        # commits with ancestry graphs."
+        "gbs" = "git switch";
+      };
     };
 
     programs.starship = {
