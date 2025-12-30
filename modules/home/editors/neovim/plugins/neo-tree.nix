@@ -5,8 +5,10 @@
   # - Custom Window Chooser
   plugins.neo-tree = {
     enable = true;
-    filesystem = {
-      useLibuvFileWatcher = true;
+    settings = {
+      filesystem = {
+        use_lib_uv_file_watcher = true;
+      };
     };
   };
 }

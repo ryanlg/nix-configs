@@ -46,7 +46,6 @@ in
     launchd.daemons.kanata = let 
       exe = lib.meta.getExe cfg.kanata.package;
       conf = "/etc/${kanataConfigRelativePath}";
-
     in {
       serviceConfig = {
         ProgramArguments = [

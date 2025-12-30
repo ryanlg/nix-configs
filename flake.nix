@@ -68,7 +68,7 @@
 
       overlays = [
         (final: prev: {
-          zjstatus = zjstatus.packages.${prev.system}.default;
+          zjstatus = zjstatus.packages.${prev.stdenv.hostPlatform.system}.default;
         })
       ];
     in
