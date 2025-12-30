@@ -14,4 +14,13 @@
       };
     };
   };
+
+  keymaps = [
+    {
+      # Toggle zen-mode
+      mode = "n";
+      key = "<leader>vg";
+      action = "<Cmd>ZenMode<CR>";
+    }
+  ];
 }

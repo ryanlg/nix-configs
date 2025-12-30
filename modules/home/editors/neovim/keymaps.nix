@@ -1,7 +1,8 @@
 { ... }:
 {
-globals.mapleader = ";";
+  globals.mapleader = ";";
 
+  # Only for the base. Plugins' keymaps are in their individual modules.
   keymaps = [
     # Editing
     {
@@ -129,39 +130,6 @@ globals.mapleader = ";";
       mode = "n";
       key = "<leader>-";
       action = "<Cmd>vertical resize -5<CR>";
-    }
-    {
-      # Toggle zen-mode
-      mode = "n";
-      key = "<leader>vg";
-      action = "<Cmd>ZenMode<CR>";
-    }
-
-    # neo-tree
-    {
-      key = "<leader>nt";
-      action = "<cmd>Neotree toggle<cr>";
-    }
-
-    # Telescope
-    {
-      key = "<leader>ff";
-      action = "<cmd>Telescope find_files<CR>";
-    }
-    {
-      key = "<leader>fg";
-      action = "<cmd>Telescope live_grep<CR>";
-    }
-    {
-      key = "<leader>fb";
-      action = "<cmd>Telescope buffers<CR>";
-    }
-
-    # Trouble
-    {
-      mode = "n";
-      key = "<leader>xx";
-      action = "<cmd>Trouble diagnostics toggle filter.buf=0<cr>";
     }
   ];
 }
