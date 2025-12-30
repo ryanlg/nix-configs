@@ -16,6 +16,7 @@
     terminals.alacritty.enable = true;
     utilities = {
       tig.enable = true;
+      lazygit.enable = true;
     };
   };
 
