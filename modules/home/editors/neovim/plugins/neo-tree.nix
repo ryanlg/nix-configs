@@ -22,5 +22,10 @@
       key = "<leader>nr";
       action = "<cmd>Neotree reveal<cr>";
     }
+    # Open Git status in a floating window
+    {
+      key = "<leader>ng";
+      action = "<cmd>Neotree float git_status<cr>";
+    }
   ];
 }
