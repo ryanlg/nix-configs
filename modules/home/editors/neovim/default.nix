@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs-unstable, ... }:
 let
   cfg = config.myHome.editors.nvim;
 in
@@ -17,6 +17,11 @@ in
         ./settings.nix
         ./saving.nix
       ];
+
+      # @upgrade
+      # nixpkgs-25.11 has this plugin at 2025-11-19 and git status auto-refresh
+      # doesn't work.
+      plugins.neo-tree.package = pkgs-unstable.vimPlugins.neo-tree-nvim;
     };
   };
 }
