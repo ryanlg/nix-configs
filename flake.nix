@@ -79,8 +79,9 @@
       perSystem =
         { pkgs, system, ... }:
         {
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system overlays;
+          _module.args = {
+            pkgs = import inputs.nixpkgs { inherit system overlays; };
+            pkgs-unstable = import inputs.nixpkgs-unstable { inherit system overlays; };
           };
           formatter = pkgs.nixfmt-rfc-style;
         };
@@ -126,15 +127,10 @@
               ./hosts/cobblestone/home.nix
             ];
           };
-          "ryan@rybook" = withSystem "aarch64-darwin" ({pkgs, system, ...}:
+          "ryan@rybook" = withSystem "aarch64-darwin" ({pkgs, pkgs-unstable, system, ...}:
             home-manager.lib.homeManagerConfiguration {
               inherit pkgs;
-              extraSpecialArgs = {
-                inherit inputs;
-                pkgs-unstable = import nixpkgs-unstable {
-                  system = "aarch64-darwin";
-                };
-              };
+              extraSpecialArgs = { inherit inputs pkgs-unstable; };
               modules = [
                 ./hosts/rybook/home.nix
               ];
