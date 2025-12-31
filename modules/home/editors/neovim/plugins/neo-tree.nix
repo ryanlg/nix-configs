@@ -7,16 +7,20 @@
     enable = true;
     settings = {
       filesystem = {
-        use_lib_uv_file_watcher = true;
+        use_libuv_file_watcher = true;
       };
     };
   };
 
-  # neo-tree
   keymaps = [
     {
       key = "<leader>nt";
       action = "<cmd>Neotree toggle<cr>";
+    }
+    # Open tree to current file
+    {
+      key = "<leader>nr";
+      action = "<cmd>Neotree reveal<cr>";
     }
   ];
 }
