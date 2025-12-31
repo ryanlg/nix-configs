@@ -9,6 +9,7 @@
     ./plugins/trouble.nix
     ./plugins/nix.nix
     ./plugins/zenbones.nix
+    ./plugins/window-picker.nix
   ];
 
   # Add packages to PATH
