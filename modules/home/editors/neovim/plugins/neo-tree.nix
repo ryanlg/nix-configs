@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # @todo: some improvements for neo-tree
   # https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
