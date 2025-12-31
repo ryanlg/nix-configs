@@ -1,13 +1,13 @@
 { ... }:
 {
-  # @todo: some improvements for neo-tree
-  # https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
-  # - Custom Window Chooser
   plugins.neo-tree = {
     enable = true;
     settings = {
-      filesystem = {
-        use_libuv_file_watcher = true;
+      filesystem.use_libuv_file_watcher = true;
+      window.mappings = {
+        "s" = "vsplit_with_window_picker";
+        "S" = "split_with_window_picker";
+        "<cr>" = "open_with_window_picker";
       };
     };
   };
