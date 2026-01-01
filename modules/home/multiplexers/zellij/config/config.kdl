@@ -23,6 +23,10 @@ keybinds clear-defaults=true {
         bind "k" "Up" { MoveFocus "Up"; SwitchToMode "locked"; }
         bind "esc" { SwitchToMode "scroll"; }
         bind "/" { SwitchToMode "entersearch"; }
+        // Passthrough ctrl+a to the pane after locking zellij, otherwise it'd
+        // stay in normal mode.
+        // 0x1 is the ASCII code for ctrl+a ("Start of Heading").
+        bind "Ctrl a" { SwitchToMode "locked"; Write 1; }
     }
     // End modified
 
@@ -260,6 +264,10 @@ pane_frames false
 show_startup_tips false
 // We've got the memory
 scroll_buffer_size 1_000_000
+// Start zellij in locked mode
+default_mode "locked"
+// Automatically copy selection when releasing mouse
+copy_on_select true
 theme "ao"
 
 plugins {
