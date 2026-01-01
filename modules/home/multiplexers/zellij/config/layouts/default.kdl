@@ -2,10 +2,10 @@ layout {
     default_tab_template {
         children
         pane size=1 borderless=true {
-            plugin location="file://$ZELLIJ_CONFIG_DIR/bin/zjstatus.wasm" {
-                format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-                format_center "{tabs}"
-                format_right  "{command_git_branch} {datetime}"
+            plugin location="file:@ZELLIJ_CONFIG_DIR@/plugins/zjstatus.wasm" {
+                format_left   "{mode} {tabs}"
+                format_center ""
+                format_right  "{datetime}"
                 format_space  ""
 
                 border_enabled  "false"
@@ -13,21 +13,39 @@ layout {
                 border_format   "#[fg=#6C7086]{char}"
                 border_position "top"
 
-                hide_frame_for_single_pane "true"
+                hide_frame_except_for_scroll "true"
+                hide_frame_except_for_search "true"
+                mode_default_to_mode "locked"
 
-                mode_normal  "#[bg=blue] "
-                mode_tmux    "#[bg=#ffc387] "
+                mode_locked        "#[bg=#303030,fg=#bbbbbb,bold] LOCKED  "
+                mode_normal        "#[bg=#191919,fg=#bbbbbb,bold] NORMAL  "
+                mode_resize        "#[bg=#191919,fg=#bbbbbb,bold] RESIZE  "
+                mode_pane          "#[bg=#191919,fg=#bbbbbb,bold] PANE    "
+                mode_tab           "#[bg=#191919,fg=#bbbbbb,bold] TAB     "
+                mode_scroll        "#[bg=#191919,fg=#bbbbbb,bold] SCROLL  "
+                mode_enter_search  "#[bg=#191919,fg=#bbbbbb,bold] ENTSER  "
+                mode_search        "#[bg=#191919,fg=#bbbbbb,bold] SEARCH  "
+                mode_rename_tab    "#[bg=#191919,fg=#bbbbbb,bold] RENAME  "
+                mode_rename_pane   "#[bg=#191919,fg=#bbbbbb,bold] RENAME  "
+                mode_session       "#[bg=#191919,fg=#bbbbbb,bold] SESSION "
+                mode_move          "#[bg=#191919,fg=#bbbbbb,bold] MOVE    "
+                mode_prompt        "#[bg=#191919,fg=#bbbbbb,bold] PROMPT  "
+                mode_tmux          "#[bg=#191919,fg=#bbbbbb,bold] TMUX    "
 
-                tab_normal   "#[fg=#6C7086] {name} "
-                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+                tab_normal              "#[bg=#191919,fg=#bbbbbb,bold] {name} {floating_indicator}"
+                tab_normal_fullscreen   "#[bg=#191919,fg=#bbbbbb,bold] {name} {fullscreen_indicator}"
+                tab_normal_sync         "#[bg=#191920,fg=#bbbbbb,bold] {name} {sync_indicator}"
 
-                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
-                command_git_branch_format      "#[fg=blue] {stdout} "
-                command_git_branch_interval    "10"
-                command_git_branch_rendermode  "static"
+                tab_active              "#[bg=#383d47,fg=#bbbbbb,bold] {name} {floating_indicator}"
+                tab_active_fullscreen   "#[bg=#383d47,fg=#bbbbbb,bold] {name} {fullscreen_indicator}"
+                tab_active_sync         "#[bg=#383d47,fg=#bbbbbb,bold] {name} {sync_indicator} "
 
-                datetime        "#[fg=#6C7086,bold] {format} "
-                datetime_format "%A, %d %b %Y %H:%M"
+                tab_sync_indicator       "<> "
+                tab_fullscreen_indicator "[] "
+                tab_floating_indicator   "⬚ "
+
+                datetime        "#[fg=#6e6e6e,bold] {format} "
+                datetime_format "%a, %b %d %Y %H:%M"
                 datetime_timezone "Australia/Melbourne"
             }
         }
