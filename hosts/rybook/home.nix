@@ -15,6 +15,7 @@
     editors.nvim.enable = true;
     terminals.alacritty.enable = true;
     multiplexers.zellij.enable = true;
+    multiplexers.tmux.enable = true;
     utilities = {
       tig.enable = true;
       lazygit.enable = true;
