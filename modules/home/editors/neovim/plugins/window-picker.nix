@@ -6,5 +6,39 @@ lib.nixvim.plugins.mkNeovimPlugin {
 
   maintainers = [ ];
 } // {
-  plugins.window-picker.enable = true;
+  plugins.window-picker = {
+    enable = true;
+
+    settings = {
+      selection_chars = "ABCDEFGHIJKLMN";
+
+      highlights = {
+        enabled = true;
+        statusline = {
+            focused = {
+                fg = "#ededed";
+                bg = "#8eb1d4";
+                bold = true;
+            };
+            unfocused = {
+                fg = "#ededed";
+                bg = "#8eb1d4";
+                bold = true;
+            };
+        };
+        winbar = {
+            focused = {
+                fg = "#ededed";
+                bg = "#8eb1d4";
+                bold = true;
+            };
+            unfocused = {
+                fg = "#ededed";
+                bg = "#8eb1d4";
+                bold = true;
+            };
+        };
+      };
+    };
+  };
 }
