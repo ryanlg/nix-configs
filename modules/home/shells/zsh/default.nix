@@ -84,5 +84,10 @@ in
         battery.disabled = true;
       };
     };
+
+    programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
