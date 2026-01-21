@@ -83,7 +83,7 @@
             pkgs = import inputs.nixpkgs { inherit system overlays; };
             pkgs-unstable = import inputs.nixpkgs-unstable { inherit system overlays; };
           };
-          formatter = pkgs.nixfmt-rfc-style;
+          formatter = pkgs.nixfmt-tree;
         };
 
       flake = {
