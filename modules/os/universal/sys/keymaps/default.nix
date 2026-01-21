@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mySystem.sys.keymaps;
 in
@@ -10,7 +15,7 @@ in
       extraDescription = "This option is only used by Darwin systems.";
     };
 
-    kanata.package = lib.mkPackageOption pkgs "kanata" {};
+    kanata.package = lib.mkPackageOption pkgs "kanata" { };
   };
 
   config = lib.mkIf cfg.enable {

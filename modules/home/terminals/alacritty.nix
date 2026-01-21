@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myHome.terminals.alacritty;
 in
 {
   options.myHome.terminals.alacritty = {
     enable = lib.mkEnableOption "Enable Alacrity";
-    package = lib.mkPackageOption pkgs "alacritty" {};
+    package = lib.mkPackageOption pkgs "alacritty" { };
   };
 
   config = lib.mkIf cfg.enable {

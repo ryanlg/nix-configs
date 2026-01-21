@@ -1,11 +1,16 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   cfg = config.myHome.multiplexers.zellij;
 in
 {
   options.myHome.multiplexers.zellij = {
     enable = lib.mkEnableOption "Enable zellij";
-    package = lib.mkPackageOption pkgs "zellij" {};
+    package = lib.mkPackageOption pkgs "zellij" { };
   };
 
   config = lib.mkIf cfg.enable {

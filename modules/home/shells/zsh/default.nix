@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   cfg = config.myHome.shell.zsh;
 in
@@ -20,7 +26,7 @@ in
         append = true;
         # Save timestamps to the history file
         extended = true;
-         # Expire duplicates first
+        # Expire duplicates first
         expireDuplicatesFirst = true;
         # Don't display a line previously found in the history file during ctrl+r
         findNoDups = true;
@@ -56,7 +62,7 @@ in
         # Solution is either to patch that funciton out or use another plugin.
         {
           name = "fzf-zsh";
-          src  = inputs.fzf-zsh;
+          src = inputs.fzf-zsh;
           file = "fzf-zsh-plugin.plugin.zsh";
         }
       ];

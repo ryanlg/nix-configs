@@ -65,11 +65,11 @@
       ];
     };
     "/etc/nixos" = {
-      device  = "/mnt/nixos";    # bindfs is just a FUSE view of the first mount
-      fsType  = "fuse.bindfs";
+      device = "/mnt/nixos"; # bindfs is just a FUSE view of the first mount
+      fsType = "fuse.bindfs";
       depends = [ "/mnt/nixos" ];
       options = [
-        "map=501/1000:@20/@100"  # 501/20 is your user account on the host
+        "map=501/1000:@20/@100" # 501/20 is your user account on the host
         "nofail"
         "auto"
       ];

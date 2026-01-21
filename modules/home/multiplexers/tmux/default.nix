@@ -1,11 +1,16 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   cfg = config.myHome.multiplexers.tmux;
 in
 {
   options.myHome.multiplexers.tmux = {
     enable = lib.mkEnableOption "Enable tmux";
-    package = lib.mkPackageOption pkgs "tmux" {};
+    package = lib.mkPackageOption pkgs "tmux" { };
   };
 
   config = lib.mkIf cfg.enable {

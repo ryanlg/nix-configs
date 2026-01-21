@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-    imports = [
-      ./neovim
-    ];
+  imports = [
+    ./neovim
+  ];
 }

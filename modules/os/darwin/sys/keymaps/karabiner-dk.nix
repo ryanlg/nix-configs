@@ -3,7 +3,13 @@
 # - https://github.com/auscyber/dotfiles/blob/21f73a/modules/darwin/keybinds/karabiner_driver/default.nix
 # - https://github.com/nix-darwin/nix-darwin/pull/1595
 # plus some personal touch, because the nix-darwin upstream for this driver does not work as of writing.
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 let
   cfg = config.services.karabiner-dk;
 

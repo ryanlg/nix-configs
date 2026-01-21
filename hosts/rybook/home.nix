@@ -4,7 +4,8 @@
   config,
   pkgs-unstable,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules/home
   ];
@@ -24,8 +25,8 @@
   };
 
   home = {
-     username = "ryan";
-     homeDirectory = "/Users/ryan";
+    username = "ryan";
+    homeDirectory = "/Users/ryan";
   };
 
   programs = {
@@ -35,7 +36,6 @@
     #   theme = "dark_plus";
     # };
   };
-
 
   home.stateVersion = "25.11";
 }

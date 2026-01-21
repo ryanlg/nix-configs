@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mySystem.sys.keymaps;
 
@@ -40,26 +45,29 @@ in
     environment = {
       systemPackages = [ cfg.kanata.package ];
 
-      etc."${kanataConfigRelativePath}".text = builtins.readFile ./../../../universal/sys/keymaps/kanata.kdb;
+      etc."${kanataConfigRelativePath}".text =
+        builtins.readFile ./../../../universal/sys/keymaps/kanata.kdb;
     };
 
-    launchd.daemons.kanata = let 
-      exe = lib.meta.getExe cfg.kanata.package;
-      conf = "/etc/${kanataConfigRelativePath}";
-    in {
-      serviceConfig = {
-        ProgramArguments = [
-          "/bin/sh"
-          "-c"
-          "/bin/wait4path ${cfg.kanata.package} && sudo ${exe} -c ${conf}"
-        ];
-        StandardErrorPath = "/tmp/kanata.err.log";
-        StandardOutPath = "/tmp/kanata.out";
-        RunAtLoad = true;
-        KeepAlive = true;
-        ProcessType = "Interactive";
+    launchd.daemons.kanata =
+      let
+        exe = lib.meta.getExe cfg.kanata.package;
+        conf = "/etc/${kanataConfigRelativePath}";
+      in
+      {
+        serviceConfig = {
+          ProgramArguments = [
+            "/bin/sh"
+            "-c"
+            "/bin/wait4path ${cfg.kanata.package} && sudo ${exe} -c ${conf}"
+          ];
+          StandardErrorPath = "/tmp/kanata.err.log";
+          StandardOutPath = "/tmp/kanata.out";
+          RunAtLoad = true;
+          KeepAlive = true;
+          ProcessType = "Interactive";
+        };
       };
-    };
 
     system.activationScripts.postActivation.text = ''
       # Use bootout to kill the running daemon. If it's not already running, bootout will fail so ignore the error.

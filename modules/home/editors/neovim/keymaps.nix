@@ -64,13 +64,19 @@
 
     # Move faster
     {
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<S-J>";
       action = "6j";
     }
     {
       # Move faster: 3 lines up
-      mode = [ "n" "v" ];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<S-K>";
       action = "3k";
     }

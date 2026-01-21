@@ -18,7 +18,10 @@ in
             force = true;
             default = "google";
             privateDefault = "google";
-            order = ["google" "ddg"];
+            order = [
+              "google"
+              "ddg"
+            ];
           };
 
           userChrome = builtins.readFile ./userChrome.css;

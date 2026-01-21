@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-    imports = [
-      ./zsh
-    ];
+  imports = [
+    ./zsh
+  ];
 }
