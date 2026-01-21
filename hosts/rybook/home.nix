@@ -20,6 +20,7 @@
       tig.enable = true;
       lazygit.enable = true;
     };
+    browsers.firefox.enable = true;
   };
 
   home = {

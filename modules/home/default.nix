@@ -9,5 +9,6 @@
       ./terminals
       ./multiplexers
       ./utilities
+      ./browsers
     ];
 }
