@@ -63,8 +63,11 @@ in
         bind -Tcopy-mode-vi 'y' send -X copy-selection
 
         # Use | and - to create panes, the defaults are weird
-        bind | split-window -h
-        bind - split-window -v
+        bind | split-window -h -c "#{pane_current_path}"
+        bind - split-window -v -c "#{pane_current_path}"
+
+        # Open new window in the same directory
+        bind c new-window -c "#{pane_current_path}"
 
         # Synchronize all panes in a window
         bind y setw synchronize-panes
