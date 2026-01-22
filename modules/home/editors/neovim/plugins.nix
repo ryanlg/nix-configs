@@ -10,6 +10,7 @@
     ./plugins/nix.nix
     ./plugins/zenbones.nix
     ./plugins/window-picker.nix
+    ./plugins/surround.nix
   ];
 
   # Add packages to PATH
