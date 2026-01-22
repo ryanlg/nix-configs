@@ -79,6 +79,10 @@ in
         # This overshadows Prezto's git alias for `git show-branch` that "lists branches and their
         # commits with ancestry graphs."
         "gbs" = "git switch";
+
+        # tmux
+        "tmuxa" = "tmux new-session -A";
+        "tmuxl" = "tmux list-sessions";
       };
     };
 
