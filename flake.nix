@@ -71,6 +71,11 @@
           zjstatus = zjstatus.packages.${prev.stdenv.hostPlatform.system}.default;
         })
       ];
+
+      # Allow these unfree packages to be installed
+      unfreePackages = [
+        "1password"
+      ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { withSystem, ... }:
@@ -81,7 +86,10 @@
           { pkgs, system, ... }:
           {
             _module.args = {
-              pkgs = import inputs.nixpkgs { inherit system overlays; };
+              pkgs = import inputs.nixpkgs {
+                inherit system overlays;
+                config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreePackages;
+              };
               pkgs-unstable = import inputs.nixpkgs-unstable { inherit system overlays; };
             };
             formatter = pkgs.nixfmt-tree;
@@ -100,24 +108,23 @@
           };
 
           darwinConfigurations = {
-            rybook = nix-darwin.lib.darwinSystem {
-              system = "aarch64-darwin";
-              specialArgs = {
-                inherit inputs;
-                pkgs-unstable = import nixpkgs-unstable {
-                  system = "aarch64-darwin";
+            rybook = withSystem "aarch64-darwin" (
+              {
+                pkgs,
+                pkgs-unstable,
+                system,
+                ...
+              }:
+              nix-darwin.lib.darwinSystem {
+                inherit system;
+                specialArgs = {
+                  inherit inputs pkgs pkgs-unstable;
                 };
-              };
-              modules = [
-                ./hosts/rybook/configuration.nix
-                home-manager.darwinModules.home-manager
-                #   home-manager.useGlobalPkgs = true;
-                #   home-manager.useUserPackages = true;
-                #   # home-manager.extraSpecialArgs = specialArgs;
-                #   home-manager.users.ryan {import ./systems/hosts/rybook/home.nix;
-                # }
-              ];
-            };
+                modules = [
+                  ./hosts/rybook/configuration.nix
+                ];
+              }
+            );
           };
 
           homeConfigurations = {

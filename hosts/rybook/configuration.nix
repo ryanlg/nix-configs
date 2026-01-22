@@ -26,6 +26,7 @@
       keyrepeat.enable = true;
       trackpad.enable = true;
     };
+    programs._1password.enable = true;
   };
 
   system = {

@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./sys
-    ./programs
+    ./_1password.nix
   ];
 }
