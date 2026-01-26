@@ -9,5 +9,6 @@
     fd.enable = true;
     fzf.enable = true;
     ripgrep.enable = true;
+    jq.enable = true;
   };
 }
