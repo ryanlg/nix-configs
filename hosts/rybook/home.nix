@@ -27,6 +27,7 @@
     browsers.firefox.enable = true;
     agents.codex.enable = true;
     virtualizations.colima.enable = true;
+    virtualizations.docker-cli.enable = true;
   };
 
   home = {
