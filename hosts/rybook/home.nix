@@ -25,6 +25,7 @@
       just.enable = true;
     };
     browsers.firefox.enable = true;
+    agents.codex.enable = true;
   };
 
   home = {

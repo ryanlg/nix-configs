@@ -10,5 +10,6 @@
     ./multiplexers
     ./utilities
     ./browsers
+    ./agents
   ];
 }
