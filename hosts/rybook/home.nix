@@ -22,6 +22,7 @@
       lazygit.enable = true;
       uv.enable = true;
       ldns.enable = true;
+      just.enable = true;
     };
     browsers.firefox.enable = true;
   };
