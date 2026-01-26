@@ -78,7 +78,7 @@
       ];
 
       # Allow these unfree packages to be installed
-      unfreePackages = [
+      unfreeUnstablePackages = [
         "1password"
       ];
     in
@@ -93,9 +93,11 @@
             _module.args = {
               pkgs = import inputs.nixpkgs {
                 inherit system overlays;
-                config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreePackages;
               };
-              pkgs-unstable = import inputs.nixpkgs-unstable { inherit system overlays; };
+              pkgs-unstable = import inputs.nixpkgs-unstable {
+                inherit system overlays;
+                config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreeUnstablePackages;
+              };
             };
             formatter = pkgs.nixfmt-tree;
           };
