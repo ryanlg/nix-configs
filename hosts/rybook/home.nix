@@ -26,6 +26,7 @@
     };
     browsers.firefox.enable = true;
     agents.codex.enable = true;
+    virtualizations.colima.enable = true;
   };
 
   home = {

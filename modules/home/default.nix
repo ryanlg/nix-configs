@@ -11,5 +11,6 @@
     ./utilities
     ./browsers
     ./agents
+    ./virtualizations
   ];
 }

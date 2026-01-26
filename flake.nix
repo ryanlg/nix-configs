@@ -17,6 +17,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nixvim - Neovim distribution built around Nix modules
     # https://github.com/nix-community/nixvim
@@ -56,6 +60,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      home-manager-unstable,
       disko,
       nix-darwin,
       zjstatus,
@@ -130,7 +135,10 @@
           homeConfigurations = {
             "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.aarch64-linux;
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = {
+                inherit inputs;
+                home-manager-unstable = inputs.home-manager-unstable;
+              };
               modules = [
                 ./hosts/cobblestone/home.nix
               ];
@@ -144,7 +152,10 @@
               }:
               home-manager.lib.homeManagerConfiguration {
                 inherit pkgs;
-                extraSpecialArgs = { inherit inputs pkgs-unstable; };
+                extraSpecialArgs = {
+                  inherit inputs pkgs-unstable;
+                  home-manager-unstable = inputs.home-manager-unstable;
+                };
                 modules = [
                   ./hosts/rybook/home.nix
                 ];
