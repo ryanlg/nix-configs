@@ -4,7 +4,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
 
     # flake-parts - very lightweight flake framework
@@ -78,7 +80,7 @@
       ];
 
       # Allow these unfree packages to be installed
-      unfreeUnstablePackages = [
+      unfreePackages = [
         "1password"
       ];
     in
@@ -89,15 +91,18 @@
 
         perSystem =
           { pkgs, system, ... }:
+          let
+            nixpkgsArgs = {
+              inherit system overlays;
+              config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreePackages;
+            };
+            mkPkgs = src: import src nixpkgsArgs;
+          in
           {
             _module.args = {
-              pkgs = import inputs.nixpkgs {
-                inherit system overlays;
-              };
-              pkgs-unstable = import inputs.nixpkgs-unstable {
-                inherit system overlays;
-                config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfreeUnstablePackages;
-              };
+              pkgs = mkPkgs inputs.nixpkgs;
+              pkgs-darwin = mkPkgs inputs.nixpkgs-darwin;
+              pkgs-unstable = mkPkgs inputs.nixpkgs-unstable;
             };
             formatter = pkgs.nixfmt-tree;
           };
@@ -117,15 +122,16 @@
           darwinConfigurations = {
             rybook = withSystem "aarch64-darwin" (
               {
-                pkgs,
+                pkgs-darwin,
                 pkgs-unstable,
                 system,
                 ...
               }:
               nix-darwin.lib.darwinSystem {
                 inherit system;
+                pkgs = pkgs-darwin;
                 specialArgs = {
-                  inherit inputs pkgs pkgs-unstable;
+                  inherit inputs pkgs-unstable;
                 };
                 modules = [
                   ./hosts/rybook/configuration.nix
@@ -147,13 +153,13 @@
             };
             "ryan@rybook" = withSystem "aarch64-darwin" (
               {
-                pkgs,
+                pkgs-darwin,
                 pkgs-unstable,
                 system,
                 ...
               }:
               home-manager.lib.homeManagerConfiguration {
-                inherit pkgs;
+                pkgs = pkgs-darwin;
                 extraSpecialArgs = {
                   inherit inputs pkgs-unstable;
                   home-manager-unstable = inputs.home-manager-unstable;
