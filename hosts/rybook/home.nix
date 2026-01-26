@@ -25,7 +25,10 @@
       just.enable = true;
     };
     browsers.firefox.enable = true;
-    llms.codex.enable = true;
+    llms = {
+      codex.enable = true;
+      ollama.enable = true;
+    };
     virtualizations.colima.enable = true;
     virtualizations.docker-cli.enable = true;
   };
