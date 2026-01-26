@@ -10,7 +10,7 @@
     ./multiplexers
     ./utilities
     ./browsers
-    ./agents
+    ./llms
     ./virtualizations
   ];
 }

@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.myHome.agents.codex;
+  cfg = config.myHome.llms.codex;
 in
 {
-  options.myHome.agents.codex = {
+  options.myHome.llms.codex = {
     enable = lib.mkEnableOption "Enable Codex";
     package = lib.mkPackageOption pkgs-unstable "codex" { };
   };
