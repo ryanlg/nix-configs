@@ -5,5 +5,6 @@
     ./lazygit
     ./uv.nix
     ./just.nix
+    ./fzf.nix
   ];
 }

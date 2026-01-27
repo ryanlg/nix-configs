@@ -107,22 +107,6 @@
         "type": "github"
       }
     },
-    "fzf-zsh": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1766154648,
-        "narHash": "sha256-i6qoaMWVofhD3K6/RaaNatzA2aokiNQ5ilqmahprJFU=",
-        "owner": "unixorn",
-        "repo": "fzf-zsh-plugin",
-        "rev": "cdd9d5cc3b41a3a390a0fb8605c40de652da6309",
-        "type": "github"
-      },
-      "original": {
-        "owner": "unixorn",
-        "repo": "fzf-zsh-plugin",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -357,7 +341,6 @@
       "inputs": {
         "disko": "disko",
         "flake-parts": "flake-parts",
-        "fzf-zsh": "fzf-zsh",
         "home-manager": "home-manager",
         "home-manager-unstable": "home-manager-unstable",
         "nix-darwin": "nix-darwin",

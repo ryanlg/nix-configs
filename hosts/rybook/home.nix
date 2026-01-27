@@ -22,6 +22,7 @@
       lazygit.enable = true;
       uv.enable = true;
       just.enable = true;
+      fzf.enable = true;
     };
     browsers.firefox.enable = true;
     llms = {
