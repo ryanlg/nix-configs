@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./nixos
+    ./docker.nix
   ];
 }
 
