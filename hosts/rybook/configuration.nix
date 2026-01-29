@@ -7,7 +7,6 @@
 
 {
   imports = [
-    ../../modules/os/shared
     ../../modules/os/universal
     ../../modules/os/darwin
   ];
