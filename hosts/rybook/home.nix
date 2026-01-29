@@ -23,14 +23,17 @@
       uv.enable = true;
       just.enable = true;
       fzf.enable = true;
+      direnv.enable = true;
     };
     browsers.firefox.enable = true;
     llms = {
       codex.enable = true;
       ollama.enable = true;
     };
-    virtualizations.colima.enable = true;
-    virtualizations.docker-cli.enable = true;
+    virtualizations = {
+      colima.enable = true;
+      docker-cli.enable = true;
+    };
   };
 
   home = {
