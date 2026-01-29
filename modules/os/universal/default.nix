@@ -3,5 +3,6 @@
   imports = [
     ./sys
     ./programs
+    ./virtualization
   ];
 }
