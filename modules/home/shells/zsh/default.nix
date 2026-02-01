@@ -72,6 +72,13 @@ in
         # tmux
         "tmuxa" = "tmux new-session -A";
         "tmuxl" = "tmux list-sessions";
+
+        # noglob please
+        "nix" = "noglob nix";
+        "git" = "noglob git";
+
+        # Default to nvim
+        "vim" = "nvim";
       };
     };
 
