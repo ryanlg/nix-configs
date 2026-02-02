@@ -19,6 +19,7 @@ in
       git
       vim
       curl
+      wget
     ];
   };
 }
