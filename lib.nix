@@ -52,11 +52,12 @@ in
   mkSystem =
     {
       hostname,
+      system,
       username ? "Ryan Liang",
       homename ? "ryan",
       email ? "ryan@ryanl.io",
       homebase ? (if lib.strings.hasInfix "darwin" system then "/Users" else "/home"),
-      system,
+      extraModules ? [ ],
     }:
     withSystem system (
       {
@@ -95,18 +96,20 @@ in
               email
               ;
           })
-        ];
+        ]
+        ++ extraModules;
       }
     );
 
   mkHome =
     {
       hostname,
+      system,
       username ? "Ryan Liang",
       homename ? "ryan",
       email ? "ryan@ryanl.io",
       homebase ? (if lib.strings.hasInfix "darwin" system then "/Users" else "/home"),
-      system,
+      extraModules ? [ ],
     }:
     withSystem system (
       {
@@ -146,7 +149,8 @@ in
               email
               ;
           })
-        ];
+        ]
+        ++ extraModules;
       }
     );
 }
