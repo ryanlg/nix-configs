@@ -80,6 +80,19 @@
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { withSystem, ... }:
+      let
+        flakeLib = import ./lib.nix {
+          lib = nixpkgs.lib;
+          inherit
+            inputs
+            withSystem
+            nixpkgs
+            nix-darwin
+            home-manager
+            home-manager-unstable
+            ;
+        };
+      in
       {
         inherit systems;
 
@@ -114,24 +127,10 @@
           };
 
           darwinConfigurations = {
-            rybook = withSystem "aarch64-darwin" (
-              {
-                pkgs-darwin,
-                pkgs-unstable,
-                system,
-                ...
-              }:
-              nix-darwin.lib.darwinSystem {
-                inherit system;
-                pkgs = pkgs-darwin;
-                specialArgs = {
-                  inherit inputs pkgs-unstable;
-                };
-                modules = [
-                  ./hosts/rybook/configuration.nix
-                ];
-              }
-            );
+            rybook = flakeLib.mkSystem {
+              hostname = "rybook";
+              system = "aarch64-darwin";
+            };
           };
 
           homeConfigurations = {
@@ -145,24 +144,10 @@
                 ./hosts/cobblestone/home.nix
               ];
             };
-            "ryan@rybook" = withSystem "aarch64-darwin" (
-              {
-                pkgs-darwin,
-                pkgs-unstable,
-                system,
-                ...
-              }:
-              home-manager.lib.homeManagerConfiguration {
-                pkgs = pkgs-darwin;
-                extraSpecialArgs = {
-                  inherit inputs pkgs-unstable;
-                  home-manager-unstable = inputs.home-manager-unstable;
-                };
-                modules = [
-                  ./hosts/rybook/home.nix
-                ];
-              }
-            );
+            "ryan@rybook" = flakeLib.mkHome {
+              hostname = "rybook";
+              system = "aarch64-darwin";
+            };
           };
         };
       }
