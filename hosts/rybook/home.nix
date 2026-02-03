@@ -20,6 +20,7 @@
       just.enable = true;
       fzf.enable = true;
       direnv.enable = true;
+      git.enable = true;
     };
     browsers.firefox.enable = true;
     llms = {
