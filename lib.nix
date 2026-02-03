@@ -87,7 +87,9 @@ in
 
           ./hosts/${hostname}/configuration.nix
 
-          { system.primaryUser = homename; }
+          # Only nix-darwin needs this
+          (if isDarwin then { system.primaryUser = homename; } else { })
+
           (mkUser {
             inherit
               username
