@@ -6,11 +6,6 @@
 }:
 
 {
-  imports = [
-    ../../modules/os/universal
-    ../../modules/os/darwin
-  ];
-
   # Add ability to used TouchID for sudo authentication
   security.pam.services.sudo_local = {
     touchIdAuth = true;
@@ -31,8 +26,5 @@
     programs._1password.enable = true;
   };
 
-  system = {
-    stateVersion = 6;
-    primaryUser = "ryan";
-  };
+  system.stateVersion = 6;
 }

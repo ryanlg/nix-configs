@@ -6,10 +6,6 @@
   ...
 }:
 {
-  imports = [
-    ../../modules/home
-  ];
-
   myHome = {
     fonts.meslo.enable = true;
     shell.zsh.enable = true;
@@ -34,19 +30,6 @@
       colima.enable = true;
       docker-cli.enable = true;
     };
-  };
-
-  home = {
-    username = "ryan";
-    homeDirectory = "/Users/ryan";
-  };
-
-  programs = {
-    # Doesn't work with virgl on QEM
-    # alacritty = {
-    #   enable = true;
-    #   theme = "dark_plus";
-    # };
   };
 
   home.stateVersion = "25.11";

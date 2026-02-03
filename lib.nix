@@ -79,10 +79,14 @@ in
           inherit inputs pkgs-unstable;
         };
         modules = [
+          # All users get all modules
+          # Gate the split implementation by the system string
+          ./modules/os/universal
+          (if isDarwin then ./modules/os/darwin else ./modules/os/nixos)
+
           ./hosts/${hostname}/configuration.nix
-          {
-            system.primaryUser = homename;
-          }
+
+          { system.primaryUser = homename; }
           (mkUser {
             inherit
               username
@@ -123,7 +127,11 @@ in
           home-manager-unstable = home-manager-unstable;
         };
         modules = [
+          # All users get all modules
+          ./modules/home
+
           ./hosts/${hostname}/home.nix
+
           {
             home = {
               username = homename;
