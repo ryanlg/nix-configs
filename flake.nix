@@ -37,17 +37,6 @@
       url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # disko: declarative disk partitioning and formatting
-    # https://github.com/nix-community/disko
-    # disko = {
-    #   url = "github:nix-community/disko";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # NUR: Nix User Repository
-    # https://github.com/nix-community/NUR
-    # nur.url = "github:nix-community/NUR";
   };
 
   outputs =
@@ -115,17 +104,6 @@
           };
 
         flake = {
-          nixosConfigurations = {
-            cobblestone = nixpkgs.lib.nixosSystem {
-              specialArgs = {
-                inherit inputs;
-              };
-              modules = [
-                ./hosts/cobblestone/configuration.nix
-              ];
-            };
-          };
-
           darwinConfigurations = {
             rybook = flakeLib.mkSystem {
               hostname = "rybook";
@@ -134,16 +112,6 @@
           };
 
           homeConfigurations = {
-            "ryan@cobblestone" = home-manager.lib.homeManagerConfiguration {
-              pkgs = nixpkgs.legacyPackages.aarch64-linux;
-              extraSpecialArgs = {
-                inherit inputs;
-                home-manager-unstable = inputs.home-manager-unstable;
-              };
-              modules = [
-                ./hosts/cobblestone/home.nix
-              ];
-            };
             "ryan@rybook" = flakeLib.mkHome {
               hostname = "rybook";
               system = "aarch64-darwin";

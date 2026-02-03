@@ -4,4 +4,3 @@
     ./docker.nix
   ];
 }
-
