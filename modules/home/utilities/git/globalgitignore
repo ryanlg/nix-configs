@@ -1,0 +1,174 @@
+# OS / Filesystem
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+$RECYCLE.BIN/
+
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Editor / IDE
+.vscode/
+.idea/
+*.iml
+
+# JetBrains
+out/
+.idea_modules/
+
+# Vim
+*~
+
+# Emacs
+\#*\#
+.\#*
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+*.log
+*.trace
+*.stackdump
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.crt
+
+# Rust
+target/
+**/*.rs.bk
+
+# Rust analyzer / tooling
+.rustc_info.json
+rust-analyzer.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# venv
+.venv/
+venv/
+env/
+ENV/
+
+# Build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MyPy / type checking
+.mypy_cache/
+.pyre/
+.pytype/
+
+# C Object files
+*.o
+*.obj
+*.lo
+*.a
+*.lib
+
+# C Shared libs
+*.so
+*.dylib
+*.dll
+
+# C Debug symbols
+*.dSYM/
+*.pdb
+
+# C Build directories
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+compile_commands.json
+
+# Autotools
+autom4te.cache/
+config.log
+config.status
+libtool
+aclocal.m4
+
+# JavaScript
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+
+# Caches
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+.stylelintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Go
+*.exe~
+*.test
+*.out
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+build/
+
+# Misc
+# direnv / nix
+.direnv/
+.result
+result/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Docker
+*.pid

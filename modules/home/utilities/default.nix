@@ -7,6 +7,6 @@
     ./just.nix
     ./fzf.nix
     ./direnv.nix
-    ./git.nix
+    ./git
   ];
 }

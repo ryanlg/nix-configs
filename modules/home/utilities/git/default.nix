@@ -18,6 +18,8 @@ in
     programs.git = {
       enable = true;
 
+      ignores = lib.splitString "\n" (builtins.readFile ./globalgitignore);
+
       settings = {
         user = {
           name = userCfg.username;
