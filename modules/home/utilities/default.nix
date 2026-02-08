@@ -8,5 +8,6 @@
     ./fzf.nix
     ./direnv.nix
     ./git
+    ./gh.nix
   ];
 }

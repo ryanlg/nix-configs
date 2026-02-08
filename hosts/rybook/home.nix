@@ -21,6 +21,7 @@
       fzf.enable = true;
       direnv.enable = true;
       git.enable = true;
+      gh.enable = true;
     };
     browsers.firefox.enable = true;
     llms = {
