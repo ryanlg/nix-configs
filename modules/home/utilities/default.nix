@@ -8,6 +8,7 @@
     ./fzf.nix
     ./direnv.nix
     ./git
+    ./auto-git-commit.nix
     ./gh.nix
   ];
 }
