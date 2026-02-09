@@ -67,7 +67,7 @@ in
         message = "myHome.utilities.auto-git-commit.directories must be non-empty.";
       }
       {
-        assertion = builtins.match "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$" cfg.dailyTime != null;
+        assertion = builtins.match "^([01][0-9]|2[0-3]):[0-5][0-9]$" cfg.dailyTime != null;
         message = "myHome.utilities.auto-git-commit.dailyTime must be in 24-hour HH:MM format.";
       }
     ];
