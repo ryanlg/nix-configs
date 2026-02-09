@@ -39,6 +39,12 @@ in
         size = 1000000000;
       };
 
+      setOptions = [
+        # Disable auto correct. It's just annoying.
+        "NO_CORRECT"
+        "NO_CORRECT_ALL"
+      ];
+
       prezto = {
         enable = true;
         pmodules = [
