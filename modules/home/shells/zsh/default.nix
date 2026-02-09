@@ -76,6 +76,9 @@ in
         # noglob please
         "nix" = "noglob nix";
         "git" = "noglob git";
+        "nixos-rebuild!" = "noglob sudo nixos-rebuild";
+        "darwin-rebuild!" = "noglob sudo darwin-rebuild";
+        "home-manager" = "noglob home-manager";
 
         # Default to nvim
         "vim" = "nvim";
