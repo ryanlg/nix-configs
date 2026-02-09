@@ -76,5 +76,20 @@ in
       set -o pipefail
       launchctl bootstrap system ${daemonLaunchPlist}
     '';
+
+    system.activationScripts.kanataUpgradeWarning.text = ''
+      # Track the last Kanata store path to warn on upgrades or rebuilds.
+      state_dir=/var/db/nix/kanata
+      state_file=$state_dir/package-path
+      current="${cfg.kanata.package}"
+
+      mkdir -p "$state_dir"
+
+      if [ -f "$state_file" ] && [ "$(cat "$state_file")" != "$current" ]; then
+        echo "warning: Kanata package changed: $(cat "$state_file") -> $current" >&2
+      fi
+
+      echo "$current" > "$state_file"
+    '';
   };
 }
