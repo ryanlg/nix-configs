@@ -60,6 +60,9 @@
         (final: prev: {
           zjstatus = zjstatus.packages.${prev.stdenv.hostPlatform.system}.default;
         })
+        # @upgrade: this is needed for inetutils to build on darwin, which is a dependency
+        # fontconfig, which is built by default.
+        (import ./overlays/inetutils)
       ];
 
       # Allow these unfree packages to be installed
