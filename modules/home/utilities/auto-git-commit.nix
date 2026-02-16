@@ -17,7 +17,7 @@ let
         continue
       fi
 
-      if ! "$git_bin" -C "$repo_dir" status --porcelain | grep -q .; then
+      if [ -z "$("$git_bin" -C "$repo_dir" status --porcelain)" ]; then
         continue
       fi
 
