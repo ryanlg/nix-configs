@@ -75,9 +75,7 @@ in
       launchctl bootout system ${daemonLaunchPlist} > /dev/null 2>&1 || true
       set -o pipefail
       launchctl bootstrap system ${daemonLaunchPlist}
-    '';
 
-    system.activationScripts.kanataUpgradeWarning.text = ''
       # Track the last Kanata store path to warn on upgrades or rebuilds.
       state_dir=/var/db/nix/kanata
       state_file=$state_dir/package-path
