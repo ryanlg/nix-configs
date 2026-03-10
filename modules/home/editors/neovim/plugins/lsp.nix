@@ -29,5 +29,25 @@
       key = "<leader>tf";
       action = "<Cmd>lua vim.lsp.buf.format({ async = true })<CR>";
     }
+    {
+      mode = "n";
+      key = "<leader>ti";
+      action = "<cmd>Telescope lsp_implementations<CR>";
+    }
+    {
+      mode = "n";
+      key = "<leader>td";
+      action = "<cmd>Telescope lsp_definitions<CR>";
+    }
+    {
+      mode = "n";
+      key = "<leader>tt";
+      action = "<cmd>Telescope lsp_type_definitions<CR>";
+    }
+    {
+      mode = "n";
+      key = "<leader>tr";
+      action = "<cmd>Telescope lsp_references<CR>";
+    }
   ];
 }
