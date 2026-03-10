@@ -46,6 +46,8 @@
 
     # Syntax
     number = true;
+    # Keep sign column visible to prevent text shifting on diagnostics
+    signcolumn = "yes";
     showmatch = true;
     list = true;
     # Show invisible characters
