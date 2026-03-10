@@ -29,7 +29,12 @@
       ollama.enable = true;
     };
     virtualizations = {
-      colima.enable = true;
+      colima = {
+        enable = true;
+        # @upgrade: Colima depends on Lima, which is on 1.2 and is EOL by
+        # 2026-02-06.
+        package = pkgs-unstable.colima;
+      };
       docker-cli.enable = true;
     };
   };
