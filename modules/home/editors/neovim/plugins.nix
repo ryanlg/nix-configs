@@ -2,6 +2,7 @@
 {
   imports = [
     ./plugins/lsp.nix
+    ./plugins/treesitter.nix
     ./plugins/web-devicons.nix
     ./plugins/lualine.nix
     ./plugins/zen-mode.nix
