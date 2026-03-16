@@ -1,5 +1,19 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  extraPlugins = with pkgs.vimPlugins; [
+    plenary-nvim
+    typescript-tools-nvim
+  ];
+
+  extraConfigLua = ''
+    require("typescript-tools").setup({
+      settings = {
+        -- Resolve TypeScript from the current project / surrounding environment.
+        tsserver_path = nil,
+      },
+    })
+  '';
+
   plugins.lsp = {
     enable = true;
 
@@ -14,6 +28,36 @@
 
         cmd = [ "rust-analyzer" ];
         settings."rust-analyzer".checkOnSave.command = "cargo check";
+      };
+      "ty" = {
+        enable = true;
+
+        package = null;
+
+        cmd = [
+          "ty"
+          "server"
+        ];
+      };
+      "ruff" = {
+        enable = true;
+
+        package = null;
+
+        cmd = [
+          "ruff"
+          "server"
+        ];
+      };
+      "biome" = {
+        enable = true;
+
+        package = null;
+
+        cmd = [
+          "biome"
+          "lsp-proxy"
+        ];
       };
     };
   };
