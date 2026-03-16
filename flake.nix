@@ -46,7 +46,6 @@
       nixpkgs-unstable,
       home-manager,
       home-manager-unstable,
-      disko,
       nix-darwin,
       zjstatus,
       ...
