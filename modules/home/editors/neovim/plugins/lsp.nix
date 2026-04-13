@@ -1,18 +1,23 @@
 { pkgs, ... }:
-{
-  extraPlugins = with pkgs.vimPlugins; [
-    plenary-nvim
-    typescript-tools-nvim
-  ];
+let
+  vtslsCmd = pkgs.writeShellScript "nvim-vtsls" ''
+    if command -v bunx >/dev/null 2>&1; then
+      exec bunx --bun @vtsls/language-server --stdio
+    fi
 
-  extraConfigLua = ''
-    require("typescript-tools").setup({
-      settings = {
-        -- Resolve TypeScript from the current project / surrounding environment.
-        tsserver_path = nil,
-      },
-    })
+    if command -v vtsls >/dev/null 2>&1; then
+      exec vtsls --stdio
+    fi
+
+    if command -v npx >/dev/null 2>&1; then
+      exec npx -y @vtsls/language-server --stdio
+    fi
+
+    echo "vtsls requires one of: bunx, vtsls, or npx" >&2
+    exit 1
   '';
+in
+{
 
   plugins.lsp = {
     enable = true;
@@ -58,6 +63,13 @@
           "biome"
           "lsp-proxy"
         ];
+      };
+      "vtsls" = {
+        enable = true;
+
+        package = null;
+
+        cmd = [ "${vtslsCmd}" ];
       };
     };
   };
