@@ -62,6 +62,8 @@
         # @upgrade: this is needed for inetutils to build on darwin, which is a dependency
         # fontconfig, which is built by default.
         (import ./overlays/inetutils)
+        # @upgrade: direnv test-fish exit 9 on darwin. Remove when NixOS/nix#15638 is merged
+        (import ./overlays/direnv-darwin-workaround.nix)
       ];
 
       # Allow these unfree packages to be installed
