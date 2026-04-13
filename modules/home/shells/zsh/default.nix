@@ -7,6 +7,8 @@
 }:
 let
   cfg = config.myHome.shell.zsh;
+
+  sshNoWarn = "-oWarnWeakCrypto=no -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no";
 in
 {
   options.myHome.shell.zsh.enable = lib.mkEnableOption "Enable Zsh";
@@ -88,6 +90,11 @@ in
 
         # Default to nvim
         "vim" = "nvim";
+
+        "ssh!" = "ssh -ouser=root ${sshNoWarn}";
+        "ssh#" = "ssh ${sshNoWarn}";
+        "scp!" = "scp -ouser=root ${sshNoWarn}";
+        "scp#" = "scp ${sshNoWarn}";
       };
     };
 
