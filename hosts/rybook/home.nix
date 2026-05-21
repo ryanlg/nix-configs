@@ -26,7 +26,7 @@
     browsers.firefox.enable = true;
     llms = {
       codex.enable = true;
-      ollama.enable = true;
+      ollama.enable = false;
     };
     virtualizations = {
       colima = {
