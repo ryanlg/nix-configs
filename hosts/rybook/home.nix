@@ -26,7 +26,11 @@
     browsers.firefox.enable = true;
     llms = {
       codex.enable = true;
-      ollama.enable = false;
+      ollama = {
+        enable = true;
+        # @upgrade: ollama fails to build on 0.21.1
+        package = pkgs-unstable.ollama;
+      };
     };
     virtualizations = {
       colima = {
