@@ -66,6 +66,7 @@
       # Allow these unfree packages to be installed
       unfreePackages = [
         "1password"
+        "obsidian"
       ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (

@@ -2,5 +2,6 @@
 {
   imports = [
     ./neovim
+    ./obsidian.nix
   ];
 }

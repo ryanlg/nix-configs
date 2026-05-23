@@ -9,7 +9,10 @@
   myHome = {
     fonts.meslo.enable = true;
     shell.zsh.enable = true;
-    editors.nvim.enable = true;
+    editors = {
+      nvim.enable = true;
+      obsidian.enable = true;
+    };
     terminals.alacritty.enable = true;
     multiplexers.zellij.enable = true;
     multiplexers.tmux.enable = true;
