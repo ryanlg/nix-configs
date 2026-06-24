@@ -17,9 +17,7 @@ in
     programs.lazygit = {
       enable = true;
       package = cfg.package;
+      settings.git.log.order = "default";
     };
-
-    # @upgrade: this can be replaced with `settings`
-    xdg.configFile."lazygit/config.yml".source = ./config.yml;
   };
 }

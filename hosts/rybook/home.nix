@@ -31,16 +31,11 @@
       codex.enable = true;
       ollama = {
         enable = true;
-        # @upgrade: ollama fails to build on 0.21.1
-        package = pkgs-unstable.ollama;
       };
     };
     virtualizations = {
       colima = {
         enable = true;
-        # @upgrade: Colima depends on Lima, which is on 1.2 and is EOL by
-        # 2026-02-06.
-        package = pkgs-unstable.colima;
       };
       docker-cli.enable = true;
     };

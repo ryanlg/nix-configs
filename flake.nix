@@ -3,11 +3,11 @@
   description = "My Nix IaC";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
 
     # flake-parts - very lightweight flake framework
     # https://flake.parts
@@ -16,7 +16,7 @@
     # home-manager: manage user homes
     # https://github.com/nix-community/home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager-unstable = {
@@ -27,8 +27,8 @@
     # nixvim - Neovim distribution built around Nix modules
     # https://github.com/nix-community/nixvim
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim/nixos-26.05";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # zjstatus - Status bar for Zellij
@@ -59,8 +59,6 @@
         (final: prev: {
           zjstatus = zjstatus.packages.${prev.stdenv.hostPlatform.system}.default;
         })
-        # @upgrade: direnv test-fish exit 9 on darwin. Remove when NixOS/nix#15638 is merged
-        (import ./overlays/direnv-darwin-workaround.nix)
       ];
 
       # Allow these unfree packages to be installed

@@ -24,11 +24,5 @@ in
         ./saving.nix
       ];
     };
-
-    # @upgrade: this is added to nixvim on 2025/12/12
-    # https://github.com/nix-community/nixvim/commit/1e09168
-    home.sessionVariables = {
-      VISUAL = "nvim";
-    };
   };
 }

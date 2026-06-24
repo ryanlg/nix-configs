@@ -9,11 +9,6 @@ let
   cfg = config.myHome.virtualizations.colima;
 in
 {
-  # @upgrade: services.colima was added after 25.11 home-manager.
-  imports = [
-    "${home-manager-unstable}/modules/services/colima.nix"
-  ];
-
   options.myHome.virtualizations.colima = {
     enable = lib.mkEnableOption "Enable Colima";
     package = lib.mkPackageOption pkgs "colima" { };
