@@ -1,13 +1,28 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.myHome.browsers.firefox;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
 {
   options.myHome.browsers.firefox.enable = lib.mkEnableOption "Enable Firefox";
 
   config = lib.mkIf cfg.enable {
+    home.packages = lib.optionals isDarwin [
+      pkgs.firefox-bin-unwrapped
+    ];
+
     programs.firefox = {
       enable = true;
+      # On Darwin, try Mozilla's upstream binary app without the nixpkgs
+      # wrapper. The wrapper mutates the .app bundle and breaks Mozilla's code
+      # signature; the unwrapped binary stays flake-pinned while preserving the
+      # best chance of keeping the upstream signature intact.
+      package = lib.mkIf isDarwin null;
       profiles = {
         default = {
           id = 0;

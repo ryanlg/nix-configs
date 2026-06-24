@@ -67,6 +67,7 @@
       unfreePackages = [
         "1password"
         "obsidian"
+        "firefox-bin-unwrapped"
       ];
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
