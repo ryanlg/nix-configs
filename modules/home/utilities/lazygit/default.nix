@@ -17,7 +17,10 @@ in
     programs.lazygit = {
       enable = true;
       package = cfg.package;
-      settings.git.log.order = "default";
+      settings = {
+        git.log.order = "default";
+        gui.theme.selectedLineBgColor = [ "#404040" ];
+      };
     };
   };
 }
