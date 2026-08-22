@@ -1,6 +1,7 @@
 {
   nixpkgs,
   nix-darwin,
+  nix-homebrew,
   home-manager,
   home-manager-unstable,
   config ? { },

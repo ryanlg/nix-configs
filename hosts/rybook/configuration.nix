@@ -23,6 +23,11 @@
       keyrepeat.enable = true;
       trackpad.enable = true;
     };
+    homebrew.enable = true;
+    utilities = {
+      obs.enable = true;
+      discord.enable = true;
+    };
     programs._1password.enable = true;
   };
 
