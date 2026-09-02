@@ -9,8 +9,7 @@ let
   cfg = config.mySystem.homebrew;
 in
 {
-  options.mySystem.homebrew.enable =
-    lib.mkEnableOption "Install and manage Homebrew";
+  options.mySystem.homebrew.enable = lib.mkEnableOption "Install and manage Homebrew";
 
   config = lib.mkIf cfg.enable {
     nix-homebrew = {
