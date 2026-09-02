@@ -27,6 +27,7 @@
     utilities = {
       obs.enable = true;
       discord.enable = true;
+      protonvpn.enable = true;
     };
     programs._1password.enable = true;
   };
