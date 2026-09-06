@@ -7,6 +7,10 @@
 }:
 {
   myHome = {
+    secrets = {
+      enable = true;
+      github-ssh-key.enable = true;
+    };
     fonts.meslo.enable = true;
     shell.zsh.enable = true;
     editors = {

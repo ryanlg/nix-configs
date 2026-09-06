@@ -3,6 +3,7 @@
   imports = [
     inputs.nixvim.homeModules.nixvim
     ./shared
+    ./secrets
     ./shells
     ./editors
     ./fonts

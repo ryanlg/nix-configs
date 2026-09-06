@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./ssh
     ./tig
     ./lazygit
     ./uv.nix

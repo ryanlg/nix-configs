@@ -24,6 +24,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Manage encrypted secrets.
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nixvim - Neovim distribution built around Nix modules
     # https://github.com/nix-community/nixvim
     nixvim = {

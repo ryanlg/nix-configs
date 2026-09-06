@@ -1,0 +1,8 @@
+keys:
+  - &rybook age1spkc2r3ta55n9e53kwq7w6lfvc2swy3kh8saxgx5zfchdkq68glqfjnhw6
+
+creation_rules:
+  - path_regex: ^secrets/shared/github-ssh-key$
+    key_groups:
+      - age:
+          - *rybook
