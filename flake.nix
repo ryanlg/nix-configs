@@ -82,6 +82,7 @@
       # Allow these unfree packages to be installed
       unfreePackages = [
         "1password"
+        "claude-code"
         "obsidian"
         "firefox-bin-unwrapped"
       ];
